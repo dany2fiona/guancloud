@@ -12,7 +12,10 @@
     <color name="line_color2">#FFD5D5D5</color>
     <color name="dialog_content_color">#FF333333</color>
     <color name="item_press">#FFE5E5E5</color>
+    <color name="gray">#999999</color>
     <color name="blue">#3399fe</color>
+    <color name="lightgray_color2">#FF999999</color>
+    <color name="lightgray_color3">#FFEEEEEE</color>
 
 
 

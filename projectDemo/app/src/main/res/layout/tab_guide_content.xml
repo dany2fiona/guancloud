@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/iv_guide"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/btnGuide"
+            android:layout_width="175dp"
+            android:layout_height="33dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="20dip"
+            android:background="@drawable/guide_button_corner_selector"
+            android:text="@string/guide_button_name"
+            android:textColor="@color/tab_text_selected"
+            android:textSize="@dimen/size_big"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/guideSkipBtn"
+        android:layout_width="70dp"
+        android:layout_height="33dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="top|right"
+        android:background="@drawable/skip_selector"
+        android:textSize="@dimen/size_big"
+        android:textColor="@color/lightgray_color2"
+        android:text="@string/guide_skip_name"/>
+
+</FrameLayout>

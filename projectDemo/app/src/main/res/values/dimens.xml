@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- 圆角 -->
+    <dimen name="radius_corner">2dp</dimen>
+
     <dimen name="size_normal">12sp</dimen>
     <dimen name="size_small">10sp</dimen>
     <dimen name="size_small2">11sp</dimen>

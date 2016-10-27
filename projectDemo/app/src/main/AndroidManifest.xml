@@ -13,12 +13,21 @@
         android:name=".view.MyApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".view.MainActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".view.GuideActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
         </activity>
 
         <meta-data

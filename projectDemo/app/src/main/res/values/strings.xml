@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">projectDemo</string>
+
+    <!--引导页-->
+    <string name="guide_skip_name">跳过</string>
+    <string name="guide_name">观云1.0</string>
+    <string name="guide_button_name">开启新旅程</string>
+
 </resources>
