@@ -62,7 +62,8 @@ public class GuideActivity extends AppCompatActivity {
         public void onClick(View v) {
             //设置已经引导过了，下次启动不用再次引导
             MyCookie.getInstance().putIsFirstIn(false);
-            Intent intent = new Intent(GuideActivity.this, LoginActivity.class);
+//            Intent intent = new Intent(GuideActivity.this, LoginActivity.class);
+            Intent intent = new Intent(GuideActivity.this, MainActivity.class);
             startActivity(intent);
             GuideActivity.this.finish();
         }

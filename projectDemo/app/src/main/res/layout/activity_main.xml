@@ -3,15 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".view.MainTabActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.MainActivity">
+
+    <!--
+   ?attr/actionBarSize:表示根据屏幕的分辨率采用系统默认的高度
+   如果低版本也要使用的话,则需要使用v7包的,否则只有api21上才能有效
+   -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/toolbar_layout"
+        app:contentInsetStart="0dp"
+        app:contentInsetLeft="0dp"
+        >
+        <!--添加Toolbar的子控件-->
+        <include layout="@layout/toolbar_title"/>
+
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/tv_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:text="Hello World!" />
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.dany.projectdemo.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -21,6 +22,10 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
 
     @BindView(R.id.tv_test)
     TextView mTestTv;
+    @BindView(R.id.tv_title)
+    TextView mTitleTv;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     private RoomContract.Presenter mPresenter;
 
     @Override
@@ -28,8 +33,14 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        new RoomPresenter(this);
+        initViews();
         initData();
+    }
+
+    private void initViews() {
+        setSupportActionBar(mToolbar);
+        mTitleTv.setText("直播列表");
+        new RoomPresenter(this);
     }
 
     private void initData() {

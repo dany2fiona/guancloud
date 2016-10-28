@@ -1,12 +1,40 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme.Base" parent="Theme.AppCompat">
+        <!--将ActionBar隐藏，这里使用ToolBar-->
+        <item name="android:windowActionBar">false</item>
+        <!--使用API Level22以上编译的话，要拿掉前缀字-->
+        <item name="android:windowNoTitle">true</item>
+        <!--colorPrimaryDark对应状态栏的颜色-->
+        <item name="android:colorPrimaryDark">@color/statusColor</item>
+        <!--colorPrimary对应ToolBar的颜色-->
+        <item name="android:colorPrimary">@color/toolBarColor</item>
+        <!--colorAccent 对应EditText编辑时、RadioButton选中、CheckBox等选中时的颜色。-->
+        <item name="android:colorAccent">@color/editColor</item>
+        <!--窗口的颜色-->
+        <item name="android:windowBackground">@color/widowColor</item>
+
     </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <!-- Both of these are needed -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="toolbar_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/toolBarColor</item>
+    </style>
+    <!--<item name="app:contentInsetStart">0dp</item>
+    <item name="app:contentInsetLeft">0dp</item>-->
+
 
     <style name="loading_view_dialog" parent="@android:style/Theme.Holo.Light.Dialog">
         <item name="android:windowFrame">@null</item>
