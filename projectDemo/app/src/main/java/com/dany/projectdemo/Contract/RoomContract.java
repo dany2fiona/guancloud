@@ -1,7 +1,9 @@
 package com.dany.projectdemo.Contract;
 
-import com.dany.projectdemo.Presenter.BasePresenter;
+import android.content.Context;
+
 import com.dany.projectdemo.model.Room;
+import com.dany.projectdemo.view.BaseActivity;
 
 import java.util.List;
 
@@ -11,10 +13,8 @@ import java.util.List;
 public interface RoomContract {
     interface View extends BaseView{
         void showRoom(List<Room.ResultsBean> list);
-        void showDialog();
-        void stopDialog();
     }
-    interface Presenter extends BasePresenter{
-        void loadRoom();
+    interface Presenter{
+        void loadRoom(BaseActivity context);
     }
 }
