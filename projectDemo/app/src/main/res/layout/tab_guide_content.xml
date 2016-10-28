@@ -17,7 +17,7 @@
             android:layout_width="175dp"
             android:layout_height="33dp"
             android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="20dip"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/guide_button_corner_selector"
             android:text="@string/guide_button_name"
             android:textColor="@color/tab_text_selected"
