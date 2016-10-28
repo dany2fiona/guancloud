@@ -2,7 +2,10 @@ package com.dany.projectdemo.view;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
+
+import com.dany.projectdemo.common.utils.Constants;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.util.HashSet;
 
@@ -12,6 +15,8 @@ import java.util.HashSet;
 public class MyApplication extends Application {
     public static MyApplication mContext;
     public HashSet<Activity> mainActivities;
+
+    private IWXAPI wxApi;
 
     private String goToMainTab;
 
@@ -27,10 +32,19 @@ public class MyApplication extends Application {
         this.goToMainTab = "";
     }
 
+    public IWXAPI getIWXAPI() {
+        return wxApi;
+    }
+
     @Override
     public void onCreate() {
         mContext = (MyApplication) getApplicationContext();
         mainActivities = new HashSet<Activity>();
+
+        //初始化微信
+        wxApi = WXAPIFactory.createWXAPI(this, Constants.WXAPPID,true);
+        wxApi.registerApp(Constants.WXAPPID);
+
         super.onCreate();
     }
 
