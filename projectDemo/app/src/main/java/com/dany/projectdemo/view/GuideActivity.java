@@ -1,11 +1,11 @@
 package com.dany.projectdemo.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.dany.projectdemo.R;
 import com.dany.projectdemo.common.utils.MyCookie;
+import com.viewpagerindicator.view.indicator.FixedIndicatorView;
 import com.viewpagerindicator.view.indicator.Indicator;
 import com.viewpagerindicator.view.indicator.IndicatorViewPager;
 
@@ -22,16 +23,31 @@ import com.viewpagerindicator.view.indicator.IndicatorViewPager;
 public class GuideActivity extends AppCompatActivity {
     private IndicatorViewPager indicatorViewPager;
     private LayoutInflater inflate;
+    private  final static int[] images = {R.mipmap.link_page1, R.mipmap.link_page2, R.mipmap.link_page3};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.guide_viewPager);
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.guide_viewPager);
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(viewPager.getCurrentItem()==images.length-2){
+                    hideIndicator();
+                }
+                if(viewPager.getCurrentItem()==images.length-1)
+                {
+                    return true;
+                }
+                return false;
+            }
+        });
         Indicator indicator = (Indicator) findViewById(R.id.guide_indicator);
         indicatorViewPager = new IndicatorViewPager(indicator, viewPager);
         inflate = LayoutInflater.from(getApplicationContext());
         indicatorViewPager.setAdapter(adapter);
+
     }
 
     final static class GuideViewHolder {
@@ -53,9 +69,6 @@ public class GuideActivity extends AppCompatActivity {
     };
 
     private IndicatorViewPager.IndicatorPagerAdapter adapter = new IndicatorViewPager.IndicatorViewPagerAdapter() {
-        private int[] images = {R.mipmap.link_page1, R.mipmap.link_page2, R.mipmap.link_page3};
-
-
         @Override
         public View getViewForTab(int position, View convertView, ViewGroup container) {
             if (convertView == null) {
@@ -102,4 +115,18 @@ public class GuideActivity extends AppCompatActivity {
         }
 
     };
+
+    private void hideIndicator(){
+        FixedIndicatorView indicator = (FixedIndicatorView) indicatorViewPager.getIndicatorView();
+//        ViewGroup.LayoutParams layoutParams = indicator.getLayoutParams();
+//        layoutParams.height = 0;
+//        indicator.requestLayout();
+        indicator.setVisibility(View.GONE);
+    }
+
+    private void showIndicator(){
+        FixedIndicatorView indicator = (FixedIndicatorView) indicatorViewPager.getIndicatorView();
+        indicator.setVisibility(View.VISIBLE);
+    }
+
 }
