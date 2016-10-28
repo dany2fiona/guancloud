@@ -16,4 +16,12 @@ public class WXBean {
     public void setAccess_token(String access_token) {
         this.access_token = access_token;
     }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
 }

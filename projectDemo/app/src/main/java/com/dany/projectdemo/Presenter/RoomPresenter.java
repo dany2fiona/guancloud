@@ -1,8 +1,5 @@
 package com.dany.projectdemo.Presenter;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.dany.projectdemo.Contract.RoomContract;
 import com.dany.projectdemo.model.Room;
 import com.dany.projectdemo.retrofit.Servers.RoomServers;
@@ -24,8 +21,8 @@ public class RoomPresenter implements RoomContract.Presenter{
 
     @Override
     public void loadRoom() {
-        RoomServers.getRooms(
-                new Subscriber<List<Room.ResultsBean>>() {
+         RoomServers.getRooms(
+                        new Subscriber<List<Room.ResultsBean>>() {
                     @Override
                     public void onCompleted() {
                         view.stopDialog();
