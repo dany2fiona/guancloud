@@ -1,7 +1,7 @@
 package com.dany.projectdemo.common.utils;
 
 /**
- * 说明:
+ * 说明: 存放配置信息
  * 作者：mint.zhang
  * 时间：2016/10/28 12:23
  */

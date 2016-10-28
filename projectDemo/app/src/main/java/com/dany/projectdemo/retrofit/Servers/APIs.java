@@ -2,6 +2,7 @@ package com.dany.projectdemo.retrofit.Servers;
 
 import com.dany.projectdemo.model.Room;
 import com.dany.projectdemo.model.WXBean;
+import com.dany.projectdemo.model.WXUserBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -20,7 +21,7 @@ public interface APIs {
 
     //获取微信用户信息
     @GET("sns/userinfo?")
-    Observable<WXBean> getWXUserInfo(@Query("access_token") String access_token, @Query("openid") String openid);
+    Observable<WXUserBean> getWXUserInfo(@Query("access_token") String access_token, @Query("openid") String openid);
 
 
 }
