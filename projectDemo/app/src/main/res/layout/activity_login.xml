@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.dany.projectdemo.view.LoginActivity">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/thirdLogin"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:background="@drawable/login_edit_bg">
+
+            <EditText
+                android:id="@+id/login_phone_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="18dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/phonenumber"
+                android:maxLength="11"
+                android:numeric="integer"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/tab_text">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/count_city"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="14dp"
+                android:text="@string/country_city"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_edit_bg">
+
+            <EditText
+                android:id="@+id/login_passwd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="18dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/code"
+                android:maxLines="4"
+                android:numeric="integer"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/tab_text" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/get_codebtn"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="14dp"
+                android:gravity="center"
+                android:text="@string/get_code"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_normal" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/get_void_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:text="@string/get_voice_code"
+            android:textColor="@drawable/void_selector"
+            android:textSize="@dimen/size_normal" />
+
+        <Button
+            android:id="@+id/phone_login"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/backgroud_edit_btn"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_biggest" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/thirdLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/other_login"
+            android:textColor="@color/tab_text"
+            android:textSize="@dimen/size_normal" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/wechat" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/wechat"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/size_normal" />
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
