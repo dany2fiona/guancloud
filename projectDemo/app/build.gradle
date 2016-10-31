@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
 
     defaultConfig {
         applicationId "com.dany.projectdemo"
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion 15
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -21,7 +21,12 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-
+    sourceSets {
+        main {
+            jni.srcDirs = ['src/main/jni']
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
     signingConfigs {
         debug {
             storeFile file('D:/work/ws_git/guancloud/keystore.jks')
@@ -35,7 +40,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:22.+'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.google.code.gson:gson:2.7'
     compile 'org.apache.httpcomponents:httpmime:4.5.2'
@@ -51,4 +56,10 @@ dependencies {
     compile files('libs/viewpagerindicator_library.jar')
     compile files('libs/libammsdk.jar')
     compile project(':pullToRefreshListViewLibrary')
+    compile files('libs/BukaSDK4Android.jar')
+    compile files('libs/video_render_module_java.jar')
+    compile files('libs/video_capture_module_java.jar')
+    compile files('libs/httpmime-4.2.2.jar')
+    compile files('libs/com.springsource.org.apache.commons.httpclient-3.1.0.jar')
+    compile files('libs/audio_device_module_java.jar')
 }

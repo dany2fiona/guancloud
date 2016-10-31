@@ -30,4 +30,12 @@
         android:layout_height="match_parent"
         ptr:ptrHeaderTextColor="@color/black"
         android:divider="@null" />
+    <Button
+        android:id="@+id/live_btn"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_live"/>
 </RelativeLayout>

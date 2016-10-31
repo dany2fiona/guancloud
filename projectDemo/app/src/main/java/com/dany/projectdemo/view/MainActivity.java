@@ -1,6 +1,7 @@
 package com.dany.projectdemo.view;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,8 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import tv.buka.sdk.BukaSDK;
 
 /**
  * Created by dan.y on 2016/10/27.
@@ -39,6 +43,8 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
     Toolbar mToolbar;
     @BindView(R.id.lv_live)
     PullToRefreshListView mRefreshListView;
+    @BindView(R.id.live_btn)
+    Button live_start;
     private ListView lvResults;
     private int mPageIndex = 1;
     private boolean isToEnd = false;
@@ -68,6 +74,12 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        //初始化bukaSDK
+        setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        BukaSDK.getInstance().init("1", getApplicationContext());
+
         initViews();
         initData();
     }
@@ -128,9 +140,10 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
                 // 跳转到播放页面
                 Room.ResultsBean bean = resultData.get(position);
                 Toast.makeText(MainActivity.this, bean.toString(), Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getActivity(), DetailActivity.class);
-//                intent.putExtra("goodsdata", bean);
-//                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, PlayActivity.class);
+                intent.putExtra("roomid", bean.getRoomid());
+                startActivity(intent);
+
             }
         });
 
@@ -197,5 +210,12 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
     @Override
     public void setPresenter(Object presenter) {
         mPresenter = (RoomContract.Presenter) presenter;
+    }
+
+    @OnClick(R.id.live_btn)
+    public void start_live(){
+        Intent intent = new Intent(MainActivity.this, LiveActivity.class);
+        startActivity(intent);
+
     }
 }

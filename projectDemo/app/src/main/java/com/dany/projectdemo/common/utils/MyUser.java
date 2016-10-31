@@ -67,4 +67,16 @@ public class MyUser {
                 Context.MODE_PRIVATE);
         return preferences.getString("roomid", "");
     }
+
+
+    /**
+     * 获取username
+     * @param ct
+     * @return
+     */
+    public static String getUserName(Context ct) {
+        SharedPreferences preferences = ct.getSharedPreferences(SHAREDPERENCES_NAME,
+                Context.MODE_PRIVATE);
+        return preferences.getString("username", "");
+    }
 }
