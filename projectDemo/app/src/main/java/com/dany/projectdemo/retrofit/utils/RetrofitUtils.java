@@ -17,6 +17,7 @@ public abstract class RetrofitUtils {
 
     private static Retrofit mRetrofit;
     private static OkHttpClient mOkHttpClient;
+    private static Retrofit mRetrofitforwx;
 
     /**
      * 获取Retrofit对象
@@ -42,6 +43,26 @@ public abstract class RetrofitUtils {
         }
 
         return mRetrofit;
+    }
+
+    protected static Retrofit getRetrofitforwx() {
+
+        if (null == mRetrofitforwx) {
+
+            if (null == mOkHttpClient) {
+                mOkHttpClient = OkHttp3Utils.getOkHttpClient();
+            }
+
+            mRetrofitforwx = new Retrofit.Builder()
+                    .baseUrl("https://api.weixin.qq.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .client(mOkHttpClient)
+                    .build();
+
+        }
+
+        return mRetrofitforwx;
     }
 
 }

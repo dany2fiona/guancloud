@@ -66,7 +66,7 @@
             android:background="@drawable/login_edit_bg">
 
             <EditText
-                android:id="@+id/login_passwd"
+                android:id="@+id/login_code"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -87,7 +87,7 @@
                 android:background="@color/white" />
 
             <TextView
-                android:id="@+id/get_codebtn"
+                android:id="@+id/get_code_tv"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="14dp"
@@ -136,6 +136,7 @@
             android:textSize="@dimen/size_normal" />
 
         <ImageView
+            android:id="@+id/login_wx"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"

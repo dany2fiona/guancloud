@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.dany.projectdemo.Contract.WXEntryContract;
+import com.dany.projectdemo.Presenter.WXEntryPresenter;
 import com.dany.projectdemo.common.utils.Constants;
 import com.dany.projectdemo.view.BaseActivity;
+import com.dany.projectdemo.view.MainActivity;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -14,11 +17,12 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
-public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler {
+public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler, WXEntryContract.View {
 
     private IWXAPI api;
     private String token, openid, code;
 
+    private WXEntryContract.Presenter presenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,14 +30,25 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
         super.onCreate(savedInstanceState);
         api = WXAPIFactory.createWXAPI(this, Constants.WXAPPID, true);
         api.handleIntent(getIntent(), this);
+        new WXEntryPresenter(this);
 
 
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
+        setIntent(intent);
         super.onNewIntent(intent);
+
     }
+
+    @Override
+    public Intent getIntent() {
+        new WXEntryPresenter(this);
+        return super.getIntent();
+    }
+
+
 
     // 微信发送请求到第三方应用时，会回调到该方法
     @Override
@@ -68,7 +83,7 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
                     code = ((SendAuth.Resp) resp).code;
                     // 上面的code就是接入指南里要拿到的code
                     if (code != null) {
-
+                        presenter.getWXToken(code, WXEntryActivity.this);
                     }
                     break;
 
@@ -80,4 +95,15 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
     }
 
 
+    @Override
+    public void setPresenter(Object presenter) {
+        this.presenter = (WXEntryContract.Presenter) presenter;
+    }
+
+    @Override
+    public void goMainActivity() {
+        Intent intent = new Intent(WXEntryActivity.this,MainActivity.class);
+        startActivity(intent);
+        WXEntryActivity.this.finish();
+    }
 }

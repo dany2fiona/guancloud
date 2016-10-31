@@ -41,6 +41,11 @@
         <activity android:name=".view.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"></activity>
     </application>
 
 </manifest>

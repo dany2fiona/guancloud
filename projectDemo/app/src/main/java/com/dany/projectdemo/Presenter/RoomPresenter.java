@@ -1,20 +1,16 @@
 package com.dany.projectdemo.Presenter;
 
-import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.dany.projectdemo.Contract.RoomContract;
 import com.dany.projectdemo.model.Room;
 import com.dany.projectdemo.retrofit.Servers.RoomServers;
 import com.dany.projectdemo.retrofit.utils.BaseSubscriber;
-import com.dany.projectdemo.retrofit.utils.OkHttp3Utils;
 import com.dany.projectdemo.view.BaseActivity;
 import com.dany.projectdemo.view.MyApplication;
 
 import java.util.List;
 
-import rx.Subscriber;
 
 /**
  * Created by dan.y on 2016/10/27.
@@ -45,6 +41,7 @@ public class RoomPresenter implements RoomContract.Presenter {
                 }
             }
         });
+
 
     }
 
