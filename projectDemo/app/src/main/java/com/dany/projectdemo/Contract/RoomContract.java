@@ -13,6 +13,9 @@ import java.util.List;
 public interface RoomContract {
     interface View extends BaseView{
         void showRoom(List<Room.ResultsBean> list);
+        void stopRefresh();
+        void showToolBarNumber(String total);
+        void isToEnd(boolean isToEnd);
     }
     interface Presenter{
         void loadRoom(BaseActivity context,int pageIndex);

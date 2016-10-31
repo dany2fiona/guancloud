@@ -2,6 +2,8 @@ package com.dany.projectdemo.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -38,12 +40,28 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
     @BindView(R.id.lv_live)
     PullToRefreshListView mRefreshListView;
     private ListView lvResults;
-    private boolean isRefresh;
     private int mPageIndex = 1;
+    private boolean isToEnd = false;
     private LiveListAdapter resultAdapter;
     private ArrayList<Room.ResultsBean> resultData;
     private List<Room.ResultsBean> netDbData;
 
+    private final static int MSG_PULL_FROM_END_NO_HAS_MORE = 0x0012;
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_PULL_FROM_END_NO_HAS_MORE:
+                    stopWaiting();
+                    Toast.makeText(MainActivity.this, "已经到底了", Toast.LENGTH_SHORT).show();
+                    mRefreshListView.onRefreshComplete();
+                    break;
+                default:
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,12 +95,12 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
                     @Override
                     public void onRefresh(
                             PullToRefreshBase<ListView> refreshView) {
-                        isRefresh = true;
                         changeRefreshTime();
 
                         if (refreshView.isHeaderShown()) {
                             // 下拉刷新 业务代码
                             mPageIndex = 1;
+                            isToEnd = false;
                             if(netDbData!=null && netDbData.size() >0){
                                 netDbData.clear();
                             }
@@ -90,8 +108,13 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
 
                         } else {
                             // 上拉加载更多 业务代码
-                            mPageIndex++;
-                            mPresenter.loadRoom(MainActivity.this,mPageIndex);
+                            if (!isToEnd){
+                                mPageIndex++;
+                                mPresenter.loadRoom(MainActivity.this,mPageIndex);
+                            }else{
+                                showWaiting();
+                                mHandler.sendEmptyMessageDelayed(MSG_PULL_FROM_END_NO_HAS_MORE, 200);
+                            }
                         }
                     }
 
@@ -150,15 +173,26 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
     @Override
     public void showRoom(List<Room.ResultsBean> list) {
         Log.i("dan.y", list.size() + "");
-        isRefresh = true;
         netDbData.addAll(list);
         getResultData();
-        if (isRefresh) {
-            // Call onRefreshComplete when the list has been refreshed.
-            mRefreshListView.onRefreshComplete();
-            isRefresh = false;
-        }
+        mRefreshListView.onRefreshComplete();
     }
+
+    @Override
+    public void stopRefresh() {
+        mRefreshListView.onRefreshComplete();
+    }
+
+    @Override
+    public void showToolBarNumber(String total) {
+        mTitleTv.setText("直播列表("+total+")");
+    }
+
+    @Override
+    public void isToEnd(boolean isToEnd) {
+        this.isToEnd = isToEnd;
+    }
+
 
     @Override
     public void setPresenter(Object presenter) {
