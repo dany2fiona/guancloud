@@ -17,6 +17,18 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('D:/work/ws_git/guancloud/keystore.jks')
+            keyAlias 'guancloud'
+            keyPassword '123456'
+            storePassword '123456'
+        }
     }
 }
 
