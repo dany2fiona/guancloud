@@ -12,7 +12,7 @@ import rx.Observable;
  */
 public interface APIs {
     @GET("rooms/")
-    Observable<Room> getRooms();
+    Observable<Room> getRooms(@Query("page") int pageIndex);
 
     //获取微信access_token,openid
     @GET("sns/oauth2/access_token?")

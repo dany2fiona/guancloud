@@ -15,6 +15,6 @@ public interface RoomContract {
         void showRoom(List<Room.ResultsBean> list);
     }
     interface Presenter{
-        void loadRoom(BaseActivity context);
+        void loadRoom(BaseActivity context,int pageIndex);
     }
 }

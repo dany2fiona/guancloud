@@ -19,17 +19,17 @@ import rx.Subscriber;
 /**
  * Created by dan.y on 2016/10/27.
  */
-public class RoomPresenter implements RoomContract.Presenter{
+public class RoomPresenter implements RoomContract.Presenter {
     RoomContract.View view;
 
-    public RoomPresenter(RoomContract.View view){
+    public RoomPresenter(RoomContract.View view) {
         this.view = view;
         view.setPresenter(this);
     }
 
     @Override
-    public void loadRoom(final BaseActivity context) {
-        RoomServers.getRooms(new BaseSubscriber<List<Room.ResultsBean>>(context) {
+    public void loadRoom(final BaseActivity context,int pageIndex) {
+        RoomServers.getRooms(pageIndex,new BaseSubscriber<List<Room.ResultsBean>>(context) {
             @Override
             public void onError(Throwable e) {
 
@@ -37,13 +37,11 @@ public class RoomPresenter implements RoomContract.Presenter{
 
             @Override
             public void onNext(List<Room.ResultsBean> resultsBeens) {
-//                view.stopDialog();
                 context.stopWaiting();
-                if(resultsBeens.size()==0){
-                    Toast.makeText(MyApplication.getContext(), "resultsBeens.size()=="+resultsBeens.size(), Toast.LENGTH_SHORT).show();
-                }else{
+                if (resultsBeens.size() == 0) {
+                    Toast.makeText(MyApplication.getContext(), "resultsBeens.size()==" + resultsBeens.size(), Toast.LENGTH_SHORT).show();
+                } else {
                     view.showRoom(resultsBeens);
-                    Toast.makeText(MyApplication.getContext(), "resultsBeens.size()=="+resultsBeens.size(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -5,6 +5,8 @@
 
     <!-- 圆角 -->
     <dimen name="radius_corner">2dp</dimen>
+    <!-- 细线的宽度 -->
+    <dimen name="line_width">0.5dp</dimen>
 
     <dimen name="size_normal">12sp</dimen>
     <dimen name="size_small">10sp</dimen>

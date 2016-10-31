@@ -38,4 +38,5 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     compile files('libs/viewpagerindicator_library.jar')
     compile files('libs/libammsdk.jar')
+    compile project(':pullToRefreshListViewLibrary')
 }

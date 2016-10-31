@@ -15,8 +15,8 @@ import rx.functions.Func1;
  */
 public class RoomServers extends Servers{
     //Get请求 获取room
-    public static void getRooms(Subscriber<List<Room.ResultsBean>> subscriber){
-        getRooms(service.getRooms(),subscriber);
+    public static void getRooms(int pageIndex,Subscriber<List<Room.ResultsBean>> subscriber){
+        getRooms(service.getRooms(pageIndex),subscriber);
     }
 
     private static void getRooms(Observable<Room> observable, Subscriber<List<Room.ResultsBean>> subscriber){
