@@ -9,6 +9,6 @@ public class Constants {
 
     //微信appid,secret
     public final static String WXAPPID = "wx5c03dcf8a88d375a";
-    public final static String WXSECRET = "bf7133b55623092d4b118798f61824aa";
+    public final static String WXSECRET = "a30678e56d9f5ca3d187b963084e3d56";
 
 }

@@ -1,6 +1,6 @@
 package com.dany.projectdemo.Contract;
 
-import com.dany.projectdemo.Presenter.BasePresenter;
+import com.dany.projectdemo.view.BaseActivity;
 
 /**
  * 说明:
@@ -9,18 +9,14 @@ import com.dany.projectdemo.Presenter.BasePresenter;
  */
 public interface WXEntryContract {
     interface View extends BaseView {
-        void getWXToken();
-
-        void getWXUserInfo();
-
-        void requestLogin();
+        void goMainActivity();
     }
 
-    interface Presenter extends BasePresenter {
-        void getWXToken(String code);
+    interface Presenter {
+        void getWXToken(String code, BaseActivity context);
 
-        void getWXUserInfo();
+        void getWXUserInfo(BaseActivity context);
 
-        void requestLogin();
+        void requestLogin(BaseActivity context);
     }
 }

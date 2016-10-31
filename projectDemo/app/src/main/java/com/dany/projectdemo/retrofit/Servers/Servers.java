@@ -14,6 +14,8 @@ import rx.schedulers.Schedulers;
  */
 public class Servers extends RetrofitUtils {
     protected static final APIs service = getRetrofit().create(APIs.class);
+    protected static final APIs serviceforwx = getRetrofitforwx().create(APIs.class);
+
 
     /**
      * 插入观察者

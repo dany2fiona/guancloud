@@ -30,7 +30,7 @@ public class UserBean {
      * code : 200
      */
 
-    private String id;
+    private String unid;
     private String username;
     private String password;
     private String token;
@@ -51,12 +51,12 @@ public class UserBean {
     private String msg;
     private String code;
 
-    public String getId() {
-        return id;
+    public String getUnid() {
+        return unid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUnid(String unid) {
+        this.unid = unid;
     }
 
     public String getUsername() {

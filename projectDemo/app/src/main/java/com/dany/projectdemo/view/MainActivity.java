@@ -1,5 +1,6 @@
 package com.dany.projectdemo.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -44,8 +45,7 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
     }
 
     private void initData() {
-        mPresenter.start();
-        mPresenter.loadRoom();
+        mPresenter.loadRoom(MainActivity.this);
     }
 
     @Override
@@ -59,16 +59,6 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
         }
         sb.deleteCharAt(sb.length() - 1);
         mTestTv.setText(sb.toString());
-    }
-
-    @Override
-    public void showDialog() {
-        showWaiting();
-    }
-
-    @Override
-    public void stopDialog() {
-        stopWaiting();
     }
 
     @Override

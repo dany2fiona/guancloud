@@ -15,7 +15,7 @@ import rx.Subscriber;
 public class WXEntryServers extends Servers {
     //Get请求 获取微信授权信息
     public static void getWXToken(String code, Subscriber<WXBean> subscriber) {
-        getWXToken(service.getWXToken(Constants.WXAPPID, Constants.WXSECRET, code, "authorization_code"), subscriber);
+        getWXToken(serviceforwx.getWXToken(Constants.WXAPPID, Constants.WXSECRET, code, "authorization_code"), subscriber);
     }
 
     private static void getWXToken(Observable<WXBean> observable, Subscriber<WXBean> subscriber) {
@@ -25,7 +25,7 @@ public class WXEntryServers extends Servers {
 
     //Get请求 获取微信用户信息
     public static void getWXUserInfo(String access_token, String openid, Subscriber<WXUserBean> subscriber) {
-        getWXUserInfo(service.getWXUserInfo(access_token, openid), subscriber);
+        getWXUserInfo(serviceforwx.getWXUserInfo(access_token, openid), subscriber);
     }
 
     private static void getWXUserInfo(Observable<WXUserBean> observable, Subscriber<WXUserBean> subscriber) {
