@@ -37,7 +37,7 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout content_layout;
     private TextView title_tv;
-    private ImageView back_iv;
+    private LinearLayout toolbar_back;
 
     private final int FLAG_PLAY_STARTED_STREAM = 1;
     private final int FLAG_PLAY_CLOSED_STREAM = 2;
@@ -120,8 +120,8 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
         play_tv = (TextView) findViewById(R.id.play_tv);
         stop_tv = (TextView) findViewById(R.id.stop_tv);
         title_tv= (TextView) findViewById(R.id.tv_toobar_title);
-        back_iv=(ImageView)findViewById(R.id.img_back);
-        back_iv.setOnClickListener(this);
+        toolbar_back= (LinearLayout) findViewById(R.id.toolbar_back);
+        toolbar_back.setOnClickListener(this);
         play_tv.setOnClickListener(this);
         stop_tv.setOnClickListener(this);
 
@@ -140,7 +140,6 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-
 
     }
 
@@ -286,17 +285,27 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.img_back:
-                if(state){
-                    ToastUtils.show(this,"您正在观看直播，请关闭后退出!");
-                }else{
-                    finish();
-                }
+            case R.id.toolbar_back:
+                backAction();
                 break;
             case R.id.stop_tv:
                 stop();
                 break;
         }
+    }
+
+    private void backAction() {
+        if(state){
+            ToastUtils.show(this,"您正在观看直播，请关闭后退出!");
+        }else{
+            finish();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backAction();
+        super.onBackPressed();
     }
 
     @Override

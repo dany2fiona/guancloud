@@ -17,31 +17,23 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <Button
-        android:id="@+id/stop_btn"
-        style="@style/Base.Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="结束直播" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <FrameLayout
-            android:id="@+id/self"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"></FrameLayout>
-
         <LinearLayout
-            android:id="@+id/content"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/self"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"></FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </LinearLayout>
+
 
 </LinearLayout>

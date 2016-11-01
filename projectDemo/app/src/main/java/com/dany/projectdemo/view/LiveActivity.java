@@ -42,7 +42,7 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
 
     private LinearLayout content_layout;
     private TextView title_tv;
-    private ImageView back_iv;
+    private LinearLayout toolbar_back;
 
     private Boolean isLive = false;//是否正在直播
 
@@ -107,17 +107,13 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
         stop_btn = (Button) findViewById(R.id.stop_btn);
         content_layout = (LinearLayout) findViewById(R.id.content);
         title_tv = (TextView) findViewById(R.id.tv_toobar_title);
-        back_iv = (ImageView) findViewById(R.id.img_back);
+        toolbar_back = (LinearLayout) findViewById(R.id.toolbar_back);
 
         title_tv.setText("我的房间：" + myroomid);
-        back_iv.setOnClickListener(new View.OnClickListener() {
+        toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isLive) {
-                    ToastUtils.show(LiveActivity.this, "您正在直播，请关闭后退出！");
-                } else {
-                    finish();
-                }
+                backAction();
             }
         });
 
@@ -132,9 +128,23 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
         });
     }
 
+    private void backAction() {
+        if (isLive) {
+            ToastUtils.show(LiveActivity.this, "您正在直播，请关闭后退出！");
+        } else {
+            finish();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backAction();
+        super.onBackPressed();
+    }
+
     /*
-     *开始直播
-     */
+         *开始直播
+         */
     private void live() {
         if (UserManager.getInstance().isLogin()) {
 

@@ -9,11 +9,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dany.projectdemo.R;
 import com.dany.projectdemo.model.Room;
 import com.dany.projectdemo.model.Room.ResultsBean;
 
 import java.util.ArrayList;
+
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by dan.y on 2016/10/31.
@@ -64,10 +67,14 @@ public class LiveListAdapter extends BaseAdapter {
         roomAliasTv = wrapper.getRoomAliasTv();
         roomIv = wrapper.getRoomIv();
 
-//        nameTv.setText("");
+        nameTv.setText(bean.getUsername());
         roomIdTv.setText(bean.getRoomid());
         roomAliasTv.setText(bean.getRoom_alias());
-//        roomIv.setImageResource(R.mipmap.ic_launcher);
+        if(bean.getImage()!=null && !bean.getImage().equals("")){
+            Glide.with(mContext).load(bean.getImage()).bitmapTransform(new CropCircleTransformation(mContext)).into(roomIv);
+        }else{
+            roomIv.setImageResource(R.mipmap.ic_launcher);
+        }
         return row;
     }
 

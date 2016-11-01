@@ -52,6 +52,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".wxapi.WXEntryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="true"
             android:launchMode="singleTop" />
         <activity

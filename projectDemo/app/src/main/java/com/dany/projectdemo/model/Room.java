@@ -15,8 +15,8 @@ public class Room {
      * pageSize : 30
      * currentPage : 1
      * totalPage : 1
-     * total : 5
-     * results : [{"pk":"3","room_alias":"8686","roomid":"8687","active":true},{"pk":"4","room_alias":"8685","roomid":"8685","active":true},{"pk":"5","room_alias":"8683","roomid":"8683","active":true},{"pk":"6","room_alias":"8681","roomid":"8681","active":true},{"pk":"7","room_alias":"8678","roomid":"8679","active":true}]
+     * total : 1
+     * results : [{"pk":"5","room_alias":"8683","roomid":"8683","image":"http://222.73.0.213:8300/static/mcuser/img/0.18%E2%84%83.png","username":"0.18℃","active":true}]
      */
 
     private String status;
@@ -27,9 +27,11 @@ public class Room {
     private String totalPage;
     private String total;
     /**
-     * pk : 3
-     * room_alias : 8686
-     * roomid : 8687
+     * pk : 5
+     * room_alias : 8683
+     * roomid : 8683
+     * image : http://222.73.0.213:8300/static/mcuser/img/0.18%E2%84%83.png
+     * username : 0.18℃
      * active : true
      */
 
@@ -103,6 +105,8 @@ public class Room {
         private String pk;
         private String room_alias;
         private String roomid;
+        private String image;
+        private String username;
         private boolean active;
 
         public String getPk() {
@@ -127,6 +131,22 @@ public class Room {
 
         public void setRoomid(String roomid) {
             this.roomid = roomid;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
         }
 
         public boolean isActive() {

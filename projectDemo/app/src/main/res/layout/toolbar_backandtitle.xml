@@ -4,15 +4,16 @@
     android:layout_height="match_parent"
     android:background="@color/toolBarColor"
     android:paddingBottom="5dp"
-    android:paddingRight="5dp"
     android:paddingTop="5dp">
-    <ImageView
+    <!--<ImageView
         android:id="@+id/img_back"
         android:layout_width="12dp"
         android:layout_height="22dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="15dp"
-        android:src="@mipmap/back_left" />
+        android:src="@mipmap/back_left" />-->
+
+    <include layout="@layout/layout_navback"/>
 
     <TextView
         android:id="@+id/tv_toobar_title"
@@ -21,4 +22,13 @@
         android:layout_gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/size_bigger" />
+    <Button
+        android:id="@+id/stop_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center"
+        android:background="@android:color/transparent"
+        android:text="结束直播"
+        android:textSize="@dimen/size_big"
+        android:textColor="@color/white"/>
 </FrameLayout>
