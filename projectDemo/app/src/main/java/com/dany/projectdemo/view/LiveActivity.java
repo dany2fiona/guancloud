@@ -8,7 +8,6 @@ import android.view.Gravity;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,7 +73,7 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
             }
 
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            lp.setMargins(0, 5, 0, 5);
+            lp.setMargins(0, 0, 0, 0);
             lp.gravity = Gravity.CENTER_HORIZONTAL;
             SurfaceView sv = (SurfaceView) msg.obj;
             if (msg.what == FLAG_PUBLISH_STARTED_STREAM) {

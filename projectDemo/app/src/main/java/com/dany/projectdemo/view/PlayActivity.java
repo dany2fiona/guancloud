@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +51,8 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
 
     private SurfaceView playSv;
     private Stream stream;
-    private TextView play_tv, stop_tv;
+    private TextView play_tv;
+    private Button stop_btn;
 
     private String roomid;
 
@@ -74,7 +75,7 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
 
 
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            lp.setMargins(0, 5, 0, 5);
+            lp.setMargins(0, 0, 0, 0);
             lp.gravity = Gravity.CENTER_HORIZONTAL;
             SurfaceView sv = (SurfaceView) msg.obj;
             if (msg.what == FLAG_PLAY_STARTED_STREAM) {
@@ -117,13 +118,11 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
     private void initView() {
 
         content_layout = (LinearLayout) findViewById(R.id.content);
-        play_tv = (TextView) findViewById(R.id.play_tv);
-        stop_tv = (TextView) findViewById(R.id.stop_tv);
+        stop_btn= (Button) findViewById(R.id.stop_btn);
         title_tv= (TextView) findViewById(R.id.tv_toobar_title);
         toolbar_back= (LinearLayout) findViewById(R.id.toolbar_back);
         toolbar_back.setOnClickListener(this);
-        play_tv.setOnClickListener(this);
-        stop_tv.setOnClickListener(this);
+        stop_btn.setOnClickListener(this);
 
         title_tv.setText("直播房间："+roomid);
 
@@ -288,7 +287,7 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
             case R.id.toolbar_back:
                 backAction();
                 break;
-            case R.id.stop_tv:
+            case R.id.stop_btn:
                 stop();
                 break;
         }
