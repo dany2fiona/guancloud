@@ -138,7 +138,6 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
     @Override
     public void onBackPressed() {
         backAction();
-        super.onBackPressed();
     }
 
     /*

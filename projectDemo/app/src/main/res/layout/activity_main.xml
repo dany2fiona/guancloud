@@ -18,7 +18,7 @@
         app:contentInsetLeft="0dp"
         >
         <!--添加Toolbar的子控件-->
-        <include layout="@layout/toolbar_title"/>
+        <include layout="@layout/toolbar_title_right_button"/>
 
     </android.support.v7.widget.Toolbar>
 
@@ -30,12 +30,4 @@
         android:layout_height="match_parent"
         ptr:ptrHeaderTextColor="@color/black"
         android:divider="@null" />
-    <Button
-        android:id="@+id/live_btn"
-        android:layout_margin="5dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start_live"/>
 </RelativeLayout>

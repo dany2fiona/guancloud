@@ -1,5 +1,7 @@
 package com.dany.projectdemo.view;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import com.dany.projectdemo.Contract.RoomContract;
 import com.dany.projectdemo.Presenter.RoomPresenter;
 import com.dany.projectdemo.R;
 import com.dany.projectdemo.adapter.LiveListAdapter;
+import com.dany.projectdemo.common.utils.ToastUtils;
 import com.dany.projectdemo.model.Room;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -51,6 +54,7 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
     private LiveListAdapter resultAdapter;
     private ArrayList<Room.ResultsBean> resultData;
     private List<Room.ResultsBean> netDbData;
+    private int backPressedNum;
 
     private final static int MSG_PULL_FROM_END_NO_HAS_MORE = 0x0012;
     private Handler mHandler = new Handler() {
@@ -226,5 +230,19 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
         Intent intent = new Intent(MainActivity.this, LiveActivity.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        backPressedNum++;
+        if(backPressedNum == 2 ){
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startMain);
+            System.exit(0);//退出程序
+        }else{
+            ToastUtils.show(MainActivity.this,"再按一次退出程序");
+        }
     }
 }

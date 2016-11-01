@@ -304,7 +304,6 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         backAction();
-        super.onBackPressed();
     }
 
     @Override
