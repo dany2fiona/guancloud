@@ -1,5 +1,6 @@
 package com.dany.projectdemo.retrofit.Servers;
 
+import com.dany.projectdemo.model.PhoneCodeBean;
 import com.dany.projectdemo.model.Room;
 import com.dany.projectdemo.model.UserBean;
 import com.dany.projectdemo.model.WXBean;
@@ -29,6 +30,14 @@ public interface APIs {
     @POST("snslogin/")
     Observable<UserBean> getUserInfo(@Query("username") String username, @Query("nickname") String nickname, @Query("login_type") String login_type, @Query("snsid") String snsid, @Query("access_token") String access_token,
                                      @Query("icon") String icon, @Query("sex") String sex);
+
+    //发送手机短信验证码
+    @POST("phonelogin/")
+    Observable<PhoneCodeBean> requestCode(@Query("phone") String phoneNumber);
+
+    //手机验证码登录
+    @GET("phonelogin/")
+    Observable<UserBean> requestPhoneLogin(@Query("phone") String phoneNumber, @Query("captcha") String resultCode);
 
 
 }

@@ -93,7 +93,7 @@ public class WXEntryPresenter implements WXEntryContract.Presenter {
             @Override
             public void onNext(UserBean userBean) {
                 context.stopWaiting();
-                if (userBean.getStatus().equals("SUCCESS")) {
+                if (userBean.getStatus().equalsIgnoreCase("SUCCESS")) {
                     saveUserInfo(userBean);
                     view.goMainActivity();
                 }
