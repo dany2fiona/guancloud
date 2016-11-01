@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">projectDemo</string>
+    <string name="app_name">观云直播Demo</string>
 
     <!--引导页-->
     <string name="guide_skip_name">跳过</string>
