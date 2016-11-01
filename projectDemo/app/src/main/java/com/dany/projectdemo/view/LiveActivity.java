@@ -8,13 +8,16 @@ import android.view.Gravity;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dany.projectdemo.Contract.LiveContract;
 import com.dany.projectdemo.Presenter.LivePresenter;
 import com.dany.projectdemo.R;
 import com.dany.projectdemo.common.utils.MyUser;
+import com.dany.projectdemo.common.utils.ToastUtils;
 
 import tv.buka.sdk.entity.Stream;
 import tv.buka.sdk.entity.User;
@@ -38,6 +41,10 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
     private String pk = "";
 
     private LinearLayout content_layout;
+    private TextView title_tv;
+    private ImageView back_iv;
+
+    private Boolean isLive = false;//是否正在直播
 
     private final int FLAG_PLAY_STARTED_STREAM = 1;
     private final int FLAG_PLAY_CLOSED_STREAM = 2;
@@ -99,6 +106,20 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
 
         stop_btn = (Button) findViewById(R.id.stop_btn);
         content_layout = (LinearLayout) findViewById(R.id.content);
+        title_tv = (TextView) findViewById(R.id.tv_toobar_title);
+        back_iv = (ImageView) findViewById(R.id.img_back);
+
+        title_tv.setText("我的房间：" + myroomid);
+        back_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isLive) {
+                    ToastUtils.show(LiveActivity.this, "您正在直播，请关闭后退出！");
+                } else {
+                    finish();
+                }
+            }
+        });
 
         ConnectManager.getInstance().connect(myroomid, username, "", username, 1);
         showWaiting();
@@ -159,6 +180,7 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
             SurfaceView sv = MediaManager.getInstance().stopPublish();
             if (sv != null) {
                 sendSurfaceViewHandler(FLAG_PUBLISH_CLOSED_STREAM, sv);
+                isLive = false;
                 mPresenter.stopLive(this, pk, false);
             }
 
@@ -311,7 +333,9 @@ public class LiveActivity extends BaseActivity implements LiveContract.View {
     @Override
     public void showModifiedRoomLive(SurfaceView surfaceView) {
         //显示直播
+        isLive = true;
         sendSurfaceViewHandler(FLAG_PUBLISH_STARTED_STREAM, surfaceView);
+
     }
 
     @Override

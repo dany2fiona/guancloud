@@ -84,6 +84,12 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
         initData();
     }
 
+    @Override
+    protected void onResume() {
+        getFristPageData();
+        super.onResume();
+    }
+
     private void initViews() {
         new RoomPresenter(this);
         setSupportActionBar(mToolbar);
@@ -111,12 +117,7 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
 
                         if (refreshView.isHeaderShown()) {
                             // 下拉刷新 业务代码
-                            mPageIndex = 1;
-                            isToEnd = false;
-                            if(netDbData!=null && netDbData.size() >0){
-                                netDbData.clear();
-                            }
-                            mPresenter.loadRoom(MainActivity.this,mPageIndex);
+                            getFristPageData();
 
                         } else {
                             // 上拉加载更多 业务代码
@@ -149,6 +150,15 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
 
     }
 
+    private void getFristPageData() {
+        mPageIndex = 1;
+        isToEnd = false;
+        if(netDbData!=null && netDbData.size() >0){
+            netDbData.clear();
+        }
+        mPresenter.loadRoom(MainActivity.this,mPageIndex);
+    }
+
     private void changeRefreshTime() {
         String label = DateUtils.formatDateTime(this
                         .getApplicationContext(), System.currentTimeMillis(),
@@ -162,7 +172,6 @@ public class MainActivity extends BaseActivity implements RoomContract.View {
     private void initData() {
         netDbData = new ArrayList<Room.ResultsBean>();
         getResultData();
-        mPresenter.loadRoom(MainActivity.this,mPageIndex);
     }
 
     private void getResultData() {

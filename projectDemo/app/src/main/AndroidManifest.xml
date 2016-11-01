@@ -54,8 +54,14 @@
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             android:launchMode="singleTop" />
-        <activity android:name=".view.LiveActivity" />
-        <activity android:name=".view.PlayActivity"></activity>
+        <activity
+            android:name=".view.LiveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.PlayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

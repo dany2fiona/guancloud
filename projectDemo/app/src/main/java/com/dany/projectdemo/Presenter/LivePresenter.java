@@ -52,6 +52,7 @@ public class LivePresenter implements LiveContract.Presenter {
             public void onNext(ModifyRoom room) {
                 //结束直播
                 ToastUtils.show(context, "退出成功！");
+                context.finish();
             }
         });
     }

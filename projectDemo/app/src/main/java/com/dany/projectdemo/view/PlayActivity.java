@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dany.projectdemo.R;
 import com.dany.projectdemo.common.utils.MyUser;
+import com.dany.projectdemo.common.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ import tv.buka.sdk.listener.UserListener;
 import tv.buka.sdk.manager.ConnectManager;
 import tv.buka.sdk.manager.MediaManager;
 import tv.buka.sdk.manager.UserManager;
+
 /*
  *观看直播
  */
@@ -33,6 +36,8 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
     private String username = "";
 
     private LinearLayout content_layout;
+    private TextView title_tv;
+    private ImageView back_iv;
 
     private final int FLAG_PLAY_STARTED_STREAM = 1;
     private final int FLAG_PLAY_CLOSED_STREAM = 2;
@@ -49,6 +54,8 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
     private TextView play_tv, stop_tv;
 
     private String roomid;
+
+    private Boolean state=false;//表示是否正在观看
 
     private List<Stream> streamList = new ArrayList<>();
 
@@ -71,7 +78,10 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
             lp.gravity = Gravity.CENTER_HORIZONTAL;
             SurfaceView sv = (SurfaceView) msg.obj;
             if (msg.what == FLAG_PLAY_STARTED_STREAM) {
+                PlayActivity.this.stopWaiting();
                 content_layout.addView(sv, lp);
+                state=true;
+
             }
             if (msg.what == FLAG_PLAY_CLOSED_STREAM) {
                 content_layout.removeView(sv);
@@ -105,13 +115,20 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
+
         content_layout = (LinearLayout) findViewById(R.id.content);
         play_tv = (TextView) findViewById(R.id.play_tv);
         stop_tv = (TextView) findViewById(R.id.stop_tv);
+        title_tv= (TextView) findViewById(R.id.tv_toobar_title);
+        back_iv=(ImageView)findViewById(R.id.img_back);
+        back_iv.setOnClickListener(this);
         play_tv.setOnClickListener(this);
         stop_tv.setOnClickListener(this);
 
+        title_tv.setText("直播房间："+roomid);
+
         try {
+            this.showWaiting();
             ConnectManager.getInstance().connect(roomid, username, "", username, 1);
         } catch (Exception e) {
             Log.i("exception", e.getMessage());
@@ -138,6 +155,8 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
             Log.i("exception", e.getMessage());
         }
         if (streamList.size() == 0) {
+            this.stopWaiting();
+            ToastUtils.show(this,"该房间暂无直播吆！");
             return;
         }
         stream = streamList.get(0);
@@ -155,6 +174,8 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
      */
     private void stop() {
         content_layout.removeView(MediaManager.getInstance().stopPlay());
+        state=false;
+        finish();
         /*new Thread(new Runnable() {
 
             @Override
@@ -265,7 +286,12 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.play_tv:
+            case R.id.img_back:
+                if(state){
+                    ToastUtils.show(this,"您正在观看直播，请关闭后退出!");
+                }else{
+                    finish();
+                }
                 break;
             case R.id.stop_tv:
                 stop();
