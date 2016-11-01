@@ -2,6 +2,7 @@ package com.dany.projectdemo.retrofit.Servers;
 
 import android.util.Log;
 
+import com.dany.projectdemo.model.ModifyRoom;
 import com.dany.projectdemo.model.Room;
 
 import java.util.List;
@@ -14,6 +15,12 @@ import rx.functions.Func1;
  * Created by dan.y on 2016/10/26.
  */
 public class RoomServers extends Servers{
+    //增加一个活动的房间
+    public static void putRoom(String pk,boolean active,Subscriber<ModifyRoom> subscriber){
+        setSubscribe(service.putRoom(pk,new ModifyRoom(active)),subscriber);
+    }
+
+
     //Get请求 获取room
     public static void getRooms(int pageIndex,Subscriber<List<Room.ResultsBean>> subscriber){
         getRooms(service.getRooms(pageIndex),subscriber);

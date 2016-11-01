@@ -11,8 +11,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.dany.projectdemo.Contract.LiveContract;
+import com.dany.projectdemo.Presenter.LivePresenter;
 import com.dany.projectdemo.R;
 import com.dany.projectdemo.common.utils.MyUser;
+import com.dany.projectdemo.model.ModifyRoom;
+import com.dany.projectdemo.retrofit.Servers.RoomServers;
+import com.dany.projectdemo.retrofit.utils.BaseSubscriber;
 
 import tv.buka.sdk.entity.Stream;
 import tv.buka.sdk.entity.User;
@@ -28,9 +33,11 @@ import tv.buka.sdk.manager.UserManager;
 /*
  *开启直播
  */
-public class LiveActivity extends BaseActivity {
+public class LiveActivity extends BaseActivity implements LiveContract.View{
+    private LiveContract.Presenter mPresenter;
     private String username = "";
     private String myroomid = "";
+    private String pk = "";
 
     private LinearLayout content_layout;
 
@@ -85,15 +92,18 @@ public class LiveActivity extends BaseActivity {
     }
 
     private void init() {
-
+        new LivePresenter(this);
+        pk = MyUser.getUserRoomPk(this)+"";
+        Log.i("dan.y","pk:"+pk);
         myroomid = MyUser.getUserRoomID(this);
         username = MyUser.getUserName(this);
         Log.i("roomid+username", myroomid + "+" + username);
 
         stop_btn = (Button) findViewById(R.id.stop_btn);
         content_layout = (LinearLayout) findViewById(R.id.content);
-        ConnectManager.getInstance().connect(myroomid, username, "", username, 1);
 
+        ConnectManager.getInstance().connect(myroomid, username, "", username, 1);
+        showWaiting();
 
         stop_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,8 +118,7 @@ public class LiveActivity extends BaseActivity {
      */
     private void live() {
         if (UserManager.getInstance().isLogin()) {
-            Toast.makeText(this, "即将开始直播，请稍候...",
-                    Toast.LENGTH_LONG).show();
+
             final MediaConfig config = new MediaConfig();
             // config.setAudioCodecType(AudioCodecType.AudioCodecTypeOPUS);
             config.setHeight(height);
@@ -230,10 +239,8 @@ public class LiveActivity extends BaseActivity {
         @Override
         public void onStreamPublishSuccess(Stream stream,
                                            SurfaceView surfaceView) {
-            // TODO Auto-generated method stub
-            //显示直播
-            sendSurfaceViewHandler(FLAG_PUBLISH_STARTED_STREAM, surfaceView);
-
+            //发送到我们的服务器通知已开通直播
+           mPresenter.modifyRoom(LiveActivity.this,pk,true,surfaceView);
         }
 
         @Override
@@ -254,6 +261,8 @@ public class LiveActivity extends BaseActivity {
 
         }
     };
+
+
 
     private MediaListener mListener = new MediaListener() {
 
@@ -297,5 +306,16 @@ public class LiveActivity extends BaseActivity {
         ConnectManager.getInstance().disconnect();
         UserManager.getInstance().removeListener(mUserListener);
         ConnectManager.getInstance().removeListener(mConnectListener);
+    }
+
+    @Override
+    public void showModifiedRoomLive(SurfaceView surfaceView) {
+        //显示直播
+        sendSurfaceViewHandler(FLAG_PUBLISH_STARTED_STREAM, surfaceView);
+    }
+
+    @Override
+    public void setPresenter(Object presenter) {
+        mPresenter = (LiveContract.Presenter) presenter;
     }
 }

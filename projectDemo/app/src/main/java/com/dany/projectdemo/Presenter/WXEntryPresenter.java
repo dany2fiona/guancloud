@@ -106,6 +106,7 @@ public class WXEntryPresenter implements WXEntryContract.Presenter {
     */
     private void saveUserInfo(UserBean userBean) {
         MyUser.saveUserData((Context) view, userBean);
+        Log.i("pk",userBean.getRoompk()+"");
     }
 
 

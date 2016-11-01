@@ -1,12 +1,18 @@
 package com.dany.projectdemo.retrofit.Servers;
 
+import com.dany.projectdemo.model.ModifyRoom;
 import com.dany.projectdemo.model.Room;
 import com.dany.projectdemo.model.UserBean;
 import com.dany.projectdemo.model.WXBean;
 import com.dany.projectdemo.model.WXUserBean;
 
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -14,8 +20,14 @@ import rx.Observable;
  * Created by dan.y on 2016/10/25.
  */
 public interface APIs {
+    //查询所有直播房间
     @GET("rooms/")
     Observable<Room> getRooms(@Query("page") int pageIndex);
+    //新增一个直播房间
+    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @PUT("rooms/{pk}/")
+    Observable<ModifyRoom> putRoom(@Path("pk") String pk, @Body ModifyRoom modifyRoom);
+
 
     //获取微信access_token,openid
     @GET("sns/oauth2/access_token?")

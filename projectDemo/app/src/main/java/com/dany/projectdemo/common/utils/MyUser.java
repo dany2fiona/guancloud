@@ -23,22 +23,21 @@ public class MyUser {
         SharedPreferences preferences = ct.getSharedPreferences(SHAREDPERENCES_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("unid", userBean.getUnid());// 唯一标识
+        editor.putInt("roompk", userBean.getRoompk());// 唯一标识
         editor.putString("username", userBean.getUsername());// 用户名
-        editor.putString("password", userBean.getPassword());// 加密后密码
         editor.putString("token", userBean.getToken());//
         editor.putString("login_type", userBean.getLogin_type());// 登录类型:0.普通,1.微信,2.QQ,3.微博
         editor.putString("nickname", userBean.getNickname());// 昵称
-        editor.putString("sex", userBean.getSex());// 性别 0:男,1:女,2:未知
-        editor.putString("age",userBean.getAge());//  	年龄
-        editor.putString("email", userBean.getEmail());// 邮箱
-        editor.putString("phone", userBean.getPhone());// 手机号
+        editor.putString("sex", (String) userBean.getSex());// 性别 0:男,1:女,2:未知
+        editor.putInt("age",userBean.getAge());//  	年龄
+        editor.putString("email", (String) userBean.getEmail());// 邮箱
+        editor.putString("phone", (String) userBean.getPhone());// 手机号
         editor.putString("img", userBean.getImg());// 头像
-        editor.putString("country", userBean.getCountry());// 国家
-        editor.putString("city", userBean.getCity());// 城市
-        editor.putString("career", userBean.getCareer());// 职业
+        editor.putString("country", (String) userBean.getCountry());// 国家
+        editor.putString("city", (String) userBean.getCity());// 城市
+        editor.putString("career", (String) userBean.getCareer());// 职业
         editor.putString("roomid", userBean.getRoomid());// 我的房间号
-        editor.putString("date_joined", userBean.getDate_joined());// 注册日期
+        editor.putString("date_joined", userBean.getJoin_date());// 注册日期
         editor.putString("status", userBean.getStatus());//
         editor.putString("msg", userBean.getMsg());//
         editor.putString("code", userBean.getCode());//
@@ -68,6 +67,16 @@ public class MyUser {
         return preferences.getString("roomid", "");
     }
 
+    /**
+     * 获取pk
+     * @param ct
+     * @return
+     */
+    public static int getUserRoomPk(Context ct) {
+        SharedPreferences preferences = ct.getSharedPreferences(SHAREDPERENCES_NAME,
+                Context.MODE_PRIVATE);
+        return preferences.getInt("roompk", 0);
+    }
 
     /**
      * 获取username

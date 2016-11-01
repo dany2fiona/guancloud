@@ -7,56 +7,57 @@ package com.dany.projectdemo.model;
  */
 public class UserBean {
 
+
     /**
-     * id : 2
-     * username : 12345
-     * password :
-     * token : 8ca6dd209e7f780229cdee74ef525dfe
-     * login_type : 1
-     * nickname : never
-     * sex : 0
-     * age : 0
-     * email : never@gmail.com
-     * phone : 18752000500
-     * img : static/mcuser/img/tests1.jpg
-     * country :
-     * province :
-     * city :
-     * career :
-     * roomid : 8696
-     * date_joined : 2016-10-28T02:27:15.211240Z
      * status : SUCCESS
-     * msg : 登录成功
+     * username : 0.18℃
      * code : 200
+     * province : null
+     * img : http://222.73.0.213:8300/static/mcuser/img/0.18%E2%84%83.png
+     * city : null
+     * career : null
+     * country : null
+     * age : 0
+     * token : 3c6caa99071e14ffa558d1eab13e1fee
+     * unid : 4
+     * sex : null
+     * phone : null
+     * join_date : 2016-10-31 06:00:14
+     * roompk : 5
+     * roomid : 8683
+     * msg : 登录成功
+     * login_type : 1
+     * nickname : 0.18℃
+     * email : null
      */
 
-    private String unid;
+    private String status;
     private String username;
-    private String password;
+    private String code;
+    private Object province;
+    private String img;
+    private Object city;
+    private Object career;
+    private Object country;
+    private int age;
     private String token;
+    private String unid;
+    private Object sex;
+    private Object phone;
+    private String join_date;
+    private int roompk;
+    private String roomid;
+    private String msg;
     private String login_type;
     private String nickname;
-    private String sex;
-    private String age;
-    private String email;
-    private String phone;
-    private String img;
-    private String country;
-    private String province;
-    private String city;
-    private String career;
-    private String roomid;
-    private String date_joined;
-    private String status;
-    private String msg;
-    private String code;
+    private Object email;
 
-    public String getUnid() {
-        return unid;
+    public String getStatus() {
+        return status;
     }
 
-    public void setUnid(String unid) {
-        this.unid = unid;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getUsername() {
@@ -67,12 +68,60 @@ public class UserBean {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCode() {
+        return code;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Object getProvince() {
+        return province;
+    }
+
+    public void setProvince(Object province) {
+        this.province = province;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Object getCity() {
+        return city;
+    }
+
+    public void setCity(Object city) {
+        this.city = city;
+    }
+
+    public Object getCareer() {
+        return career;
+    }
+
+    public void setCareer(Object career) {
+        this.career = career;
+    }
+
+    public Object getCountry() {
+        return country;
+    }
+
+    public void setCountry(Object country) {
+        this.country = country;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getToken() {
@@ -81,6 +130,62 @@ public class UserBean {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getUnid() {
+        return unid;
+    }
+
+    public void setUnid(String unid) {
+        this.unid = unid;
+    }
+
+    public Object getSex() {
+        return sex;
+    }
+
+    public void setSex(Object sex) {
+        this.sex = sex;
+    }
+
+    public Object getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Object phone) {
+        this.phone = phone;
+    }
+
+    public String getJoin_date() {
+        return join_date;
+    }
+
+    public void setJoin_date(String join_date) {
+        this.join_date = join_date;
+    }
+
+    public int getRoompk() {
+        return roompk;
+    }
+
+    public void setRoompk(int roompk) {
+        this.roompk = roompk;
+    }
+
+    public String getRoomid() {
+        return roomid;
+    }
+
+    public void setRoomid(String roomid) {
+        this.roomid = roomid;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public String getLogin_type() {
@@ -99,115 +204,11 @@ public class UserBean {
         this.nickname = nickname;
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public String getEmail() {
+    public Object getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Object email) {
         this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCareer() {
-        return career;
-    }
-
-    public void setCareer(String career) {
-        this.career = career;
-    }
-
-    public String getRoomid() {
-        return roomid;
-    }
-
-    public void setRoomid(String roomid) {
-        this.roomid = roomid;
-    }
-
-    public String getDate_joined() {
-        return date_joined;
-    }
-
-    public void setDate_joined(String date_joined) {
-        this.date_joined = date_joined;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 }
