@@ -1,6 +1,7 @@
 package com.dany.projectdemo.Presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.dany.projectdemo.Contract.LoginContract;
 import com.dany.projectdemo.common.utils.MyUser;
@@ -57,6 +58,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                 context.stopWaiting();
                 if (userBean.getStatus().equalsIgnoreCase("SUCCESS")) {
                     saveUserInfo(userBean);
+                    Log.i("dan.y","SUCCESS");
                     view.goMainActivity();
                 }
             }
